@@ -1,6 +1,7 @@
 import React,{Fragment} from 'react';
 import classes from './Header.module.css';
 import CartButton from './CartButton';
+import Meals from './Meals';
 const Header=()=>{
     return(
     <Fragment>   
