@@ -1,4 +1,6 @@
 import classes from './List.module.css';
+import { Fragment } from 'react';
+import Form from './Form';
 let DummyItems=[
     {
         id:"s1",
@@ -21,9 +23,11 @@ let DummyItems=[
 ]
 const List=(props)=>{
     let mapList=DummyItems.map(item=><li className={classes.p}><h3>{item.name}</h3>
-    <h4>{item.items}</h4>{item.amount}</li>)
+    <h4>{item.items}</h4>{item.amount}<Form/></li>)
     return(
+    <Fragment>
         <div className={classes.list}>{mapList}</div>
+    </Fragment>
     )
 
 }
