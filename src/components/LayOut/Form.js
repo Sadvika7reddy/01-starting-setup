@@ -5,13 +5,9 @@ const Form=(props)=>{
     return(
         <form className={classes.form}>
             <Input label='Amount' input={{
-                id:'amount',
-                min:'1',
-                max:'2',
-                type:'number',
-                defaultValue:'1'
-            }}
-            />
+                id:"amount",
+                Type:"number"
+            }}/>
             <button>+Add</button>
         </form>
 

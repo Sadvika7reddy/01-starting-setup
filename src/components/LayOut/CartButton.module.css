@@ -10,6 +10,7 @@
     align-items: right;
     border-radius: 25px;
     font-weight: bold;
+    text-align: right;
   }
   
   .button:hover,
