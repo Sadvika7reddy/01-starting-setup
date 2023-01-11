@@ -6,7 +6,7 @@ const Form=(props)=>{
         <form className={classes.form}>
             <Input label='Amount' input={{
                 id:"amount",
-                Type:"number"
+                type:"number",
             }}/>
             <button>+Add</button>
         </form>
