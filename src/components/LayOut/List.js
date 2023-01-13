@@ -23,7 +23,11 @@ let DummyItems=[
 ]
 const List=(props)=>{
     let mapList=DummyItems.map(item=><li className={classes.p}><h3>{item.name}</h3>
-    <h4>{item.items}</h4>{item.amount}<Form/></li>)
+    <h4>{item.items}</h4>{item.amount}
+    <div>
+    <Form id={item.id} item={item}/>
+    </div>
+    </li>)
     return(
     <Fragment>
         <div className={classes.list}>{mapList}</div>
