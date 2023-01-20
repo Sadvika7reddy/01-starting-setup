@@ -6,9 +6,11 @@ const Cart=props=>{
     const cartCntx=useContext(CartContext);
     const totalAmount=cartCntx.totalAmount;
     const onRemoveHandler=id=>{
+        cartCntx. removeItem(id);
 
     }
     const onAddHandler=item=>{
+        cartCntx.addItem({...item,quantity:1})
 
     }
     const CartItems=<ul className={classes['cart-items']}>{cartCntx.items.map(item=>
@@ -29,7 +31,7 @@ const Cart=props=>{
             </div>
             <div className={classes.actions }>
                 <button className={classes['button--alt']} onClick={props.onClose}>close</button>
-                <button className={classes.button}>open</button>
+                <button className={classes.button}>Order</button>
             </div>
         </Model>
     )

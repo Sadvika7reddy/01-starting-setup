@@ -30,6 +30,34 @@ const cartreducer=(state,action)=>{
             totalAmount:updatedTotalAmount
         };
     }
+    if(action.type='REMOVE')
+    {
+        const existingCartIndex=state.items.findIndex(
+            (item)=>item.id===action.id
+        )
+        const existingCart=state.items[existingCartIndex];
+        let updatedItems; 
+        const updatedTotalAmount=state.totalAmount-existingCart.amount;
+        if(existingCart.quantity===1)
+        {
+            updatedItems=state.items.filter(item=>item.id!=action.id);
+        }
+        else{
+            const updatedItem={
+                ...existingCart,
+                quantity:existingCart.quantity-1
+            }
+            updatedItems=[...state.items];
+            updatedItems[existingCartIndex]=updatedItem;
+
+        }
+        return{
+            items:updatedItems,
+            totalAmount:updatedTotalAmount
+        }
+
+
+    }
     return defaultCartState;
 }
 const CreateProvider=(props)=>{
