@@ -7,8 +7,9 @@ const Form=(props)=>{
    const addingOnCart=(event)=>{
     event.preventDefault();
     const quantity=document.getElementById("amount"+props.id).value;
-    const value=props.id;   
-    cartCntx.addItem({...props.item,quantity:quantity});
+    const value=props.id; 
+      
+    cartCntx.addItem({...props.item,quantity:+quantity});
 
    }
     return(

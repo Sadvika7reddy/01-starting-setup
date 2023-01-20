@@ -1,15 +1,49 @@
 import CartContext from './CartContext';
-import {useState} from 'react'
-
+import {useState,useReducer} from 'react'
+const defaultCartState={
+    items:[],
+    totalAmount:0,
+}
+const cartreducer=(state,action)=>{
+    if(action.type==='ADD')
+    {
+        const updatedTotalAmount=state.totalAmount+action.item.amount*action.item.quantity;
+        const existingCartIndex=state.items.findIndex(
+            (item)=>item.id===action.item.id
+        )
+        const existingCart=state.items[existingCartIndex];
+        let updatedItems;
+        if(existingCart)
+        {
+            const updatedItem={
+                ...existingCart,
+                quantity:existingCart.quantity+action.item.quantity
+            }
+            updatedItems=[...state.items];
+            updatedItems[existingCartIndex]=updatedItem;
+        }
+        else{ 
+            updatedItems=state.items.concat(action.item);
+        }
+              return{
+            items:updatedItems,
+            totalAmount:updatedTotalAmount
+        };
+    }
+    return defaultCartState;
+}
 const CreateProvider=(props)=>{
-    const [items,setItems]=useState([]);
+    const [cartstate,cartAction]=useReducer(cartreducer,defaultCartState)
     const addItemHandler=item=>{
-        setItems([...items,item]);
+       cartAction({type:'ADD',item:item}) 
     };
-    const removeItemHandler=id=>{};
+    const removeItemHandler=id=>{
+       cartAction({type:'REMOVE',id:id}) 
+    };
 
     const cartContext={
-        items:items,
+        items:cartstate.items,
+        totalAmount:cartstate.totalAmount,
         addItem:addItemHandler,
         removeItem:removeItemHandler
     };

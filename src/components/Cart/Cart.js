@@ -4,18 +4,28 @@ import Model from '../UI/Model';
 import CartContext from '../../store/CartContext';
 const Cart=props=>{
     const cartCntx=useContext(CartContext);
-    let Amount=0;
+    const totalAmount=cartCntx.totalAmount;
+    const onRemoveHandler=id=>{
+
+    }
+    const onAddHandler=item=>{
+
+    }
     const CartItems=<ul className={classes['cart-items']}>{cartCntx.items.map(item=>
-    <li className={classes.mod}>Name:{item.name}   price:{item.amount}   Quantity:{item.quantity}</li>)}</ul>
-    cartCntx.items.forEach(item=>{
-        Amount=Amount+item.amount;
-    })
+    <li className={classes.mod}>
+        <div>Name:{item.name}   price:{item.amount}   Quantity:{item.quantity}</div>
+        <div>
+            <button onClick={onRemoveHandler.bind(null,item.id)}>-</button>
+            <button onClick={onAddHandler.bind(null,item)}>+</button>
+        </div>
+    </li>)}</ul>
+    
     return(
         <Model onClose={props.onClose}>
             {CartItems}
             <div className={classes.total}>
                 <span>Total Amount</span>
-                <span>{Amount}</span>
+                <span>{totalAmount}</span>
             </div>
             <div className={classes.actions }>
                 <button className={classes['button--alt']} onClick={props.onClose}>close</button>
